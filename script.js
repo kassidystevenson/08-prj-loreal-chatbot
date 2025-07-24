@@ -108,8 +108,11 @@ async function getOpenAIResponse(userMessage) {
 
     // Check if the response contains a valid message
     if (data && data.choices && data.choices[0] && data.choices[0].message) {
+      // Log the bot's message content for debugging
+      console.log("Bot response:", data.choices[0].message.content);
       addMessage("bot", data.choices[0].message.content.trim());
     } else {
+      console.log("No valid bot response. Full data:", data);
       addMessage("bot", "Sorry, I couldn't get a response from the assistant.");
     }
   } catch (error) {
